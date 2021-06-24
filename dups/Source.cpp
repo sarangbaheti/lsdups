@@ -34,7 +34,7 @@ using PathVec  = std::vector<fs::path>;
 using IndexVec = std::vector<size_t>;
 using PathSizeIdxVec = std::vector<PathSizeIdx>;
 
-using DuplicateFilesNames = std::unordered_map<std::wstring, IndexVec>;
+using DuplicateFilesNames = std::unordered_map<std::string, IndexVec>;
 using DuplicateFilesSizes = std::unordered_map<uint64_t, uint32_t>;
 using DuplicateFilesHash  = std::unordered_map<uint64_t, uint32_t>;
 
@@ -453,7 +453,7 @@ static PathDetailsVec getAllFiles_2(const std::string& directoryPath, const std:
 static void addFileNameToMapping(const PathDetails& path, size_t idx, DuplicateFilesNames& fnMapping)
 {
     fs::path leafPath = path.m_path.filename();
-    std::wstring fileName(leafPath.c_str());
+    std::string fileName(leafPath.c_str());
 
     auto iter = fnMapping.find(fileName);
     if (iter == fnMapping.end())
